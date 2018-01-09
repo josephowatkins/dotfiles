@@ -341,7 +341,19 @@ you should place your code here."
                                     (match 'defun)
                                     ;; slingshot
                                     (try+ 0))))
-  )
+
+  ;;;;
+  ;; Cider Setup
+  ;;;;
+
+  ;; enable paredit in your REPL
+  (add-hook 'cider-repl-mode-hook 'paredit-mode)
+
+  ;; don't show help at start-up
+  (setq cider-repl-display-help-banner nil)
+
+  ;; auto save modified buffer on load i.e. on C-c, C-k
+  (setq cider-save-file-on-load t))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.

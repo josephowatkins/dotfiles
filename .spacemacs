@@ -315,6 +315,9 @@ you should place your code here."
   ;; use right alt key to enter # and €
   (setq-default mac-right-option-modifier nil)
 
+  ;; don't create lock-files
+  (setq create-lockfiles nil)
+
   ;;;;
   ;; Clojure Setup
   ;;;;

@@ -353,7 +353,10 @@ you should place your code here."
   (setq cider-repl-display-help-banner nil)
 
   ;; auto save modified buffer on load i.e. on C-c, C-k
-  (setq cider-save-file-on-load t))
+  (setq cider-save-file-on-load t)
+
+  ;; go right to the REPL buffer when it's finished connecting
+  (setq cider-repl-pop-to-buffer-on-connect t))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.

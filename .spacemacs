@@ -373,7 +373,12 @@ you should place your code here."
   (setq cider-save-file-on-load t)
 
   ;; go right to the REPL buffer when it's finished connecting
-  (setq cider-repl-pop-to-buffer-on-connect t))
+  (setq cider-repl-pop-to-buffer-on-connect t)
+
+  ;;;;
+  ;; Javascript Setup
+  ;;;;
+  (setq js-switch-indent-offset 4))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.

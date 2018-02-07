@@ -332,6 +332,9 @@ you should place your code here."
   ;;  global company mode
   (global-company-mode)
 
+  ;; helm inside window
+  (setq helm-split-window-inside-p t)
+
   ;;;;
   ;; Clojure Setup
   ;;;;

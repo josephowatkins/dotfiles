@@ -398,7 +398,15 @@ you should place your code here."
   ;; Set font size
   ;;;;
   (global-set-key (kbd "C-M-=") 'default-text-scale-increase)
-  (global-set-key (kbd "C-M--") 'default-text-scale-decrease))
+  (global-set-key (kbd "C-M--") 'default-text-scale-decrease)
+
+
+  ;;;;
+  ;; Helm
+  ;;;;
+
+  ;; disable ido-mode
+  (ido-mode -1))
 
 
 ;; Do not write anything past this comment. This is where Emacs will

@@ -33,6 +33,10 @@ values."
    '(
      haskell
      octave
+     markdown
+     yaml
+     python
+     sql
      html
      javascript
      clojure
@@ -50,7 +54,11 @@ values."
                       auto-completion-private-snippets-directory nil)
      ;; better-defaults
      emacs-lisp
-     ;; git
+     version-control
+     (git :variables git-gutter-fr+-side `left-fringe)
+     (version-control :variables
+                      version-control-diff-tool `diff-hl
+                      version-control-global-margin t)
      ;; markdown
      ;; org
      ;; (shell :variables
@@ -58,13 +66,13 @@ values."
      ;;        shell-default-position 'bottom)
      ;; spell-checking
      ;; syntax-checking
-     ;; version-control
+     ;; sql
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(base16-theme)
+   dotspacemacs-additional-packages '(base16-theme default-text-scale)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -380,10 +388,36 @@ you should place your code here."
   ;;;;
   ;; Javascript Setup
   ;;;;
-  (setq js-switch-indent-offset 4))
+
+  ;; switch indent
+  (setq js-switch-indent-offset 4)
+
+  ;; json indent
+  (setq-default js2-basic-offset 4
+                js-indent-level 4)
+
+  ;;;;
+  ;; Set font size
+  ;;;;
+  (global-set-key (kbd "C-M-=") 'default-text-scale-increase)
+  (global-set-key (kbd "C-M--") 'default-text-scale-decrease)
+
+  ;;;;
+  ;; Helm
+  ;;;;
+
+  ;; disable ido-mode
+  (ido-mode -1))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -391,10 +425,4 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (intero flycheck hlint-refactor hindent helm-hoogle haskell-snippets company-ghci company-ghc ghc haskell-mode company-cabal cmm-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data helm-company helm-c-yasnippet fuzzy company-tern dash-functional tern company-statistics company clojure-snippets auto-yasnippet ac-ispell auto-complete web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor js2-mode js-doc coffee-mode reveal-in-osx-finder pbcopy osx-trash osx-dictionary launchctl base16-theme clj-refactor inflections edn multiple-cursors paredit yasnippet peg cider-eval-sexp-fu cider seq queue clojure-mode ws-butler winum volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg eval-sexp-fu highlight elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed ace-link ace-jump-helm-line helm helm-core popup which-key undo-tree hydra evil-unimpaired f s dash async aggressive-indent adaptive-wrap ace-window avy))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+    (winum use-package neotree hy-mode diff-hl auto-yasnippet cider clojure-mode helm helm-core haskell-mode flycheck avy org-plus-contrib magit git-commit yapfify yaml-mode ws-butler with-editor which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen toc-org tagedit sql-indent spaceline smeargle slim-mode sesman scss-mode sass-mode restart-emacs rainbow-delimiters queue pyvenv pytest pyenv-mode py-isort pug-mode popwin pip-requirements persp-mode pcre2el paradox orgit org-bullets open-junk-file move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum livid-mode live-py-mode linum-relative link-hint json-mode js2-refactor js-doc intero indent-guide hungry-delete hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-hoogle helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets google-translate golden-ratio gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ ghub gh-md fuzzy flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu emmet-mode elisp-slime-nav dumb-jump diminish define-word default-text-scale cython-mode company-web company-tern company-statistics company-ghci company-ghc company-cabal company-anaconda column-enforce-mode coffee-mode cmm-mode clojure-snippets clj-refactor clean-aindent-mode cider-eval-sexp-fu bind-key base16-theme auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))

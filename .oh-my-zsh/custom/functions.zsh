@@ -101,3 +101,13 @@ function load_nvmrc() {
         nvm use default
     fi
 }
+
+## wtf did i do today?
+function did() {
+    if [ ! -e ~/.did/notes.txt ]; then
+        mkdir -p ~/.did
+        echo -e "I can't believe i've done this...\n" >> ~/.did/notes.txt
+    fi
+
+    vim +'normal! G' +'r !date' +'normal! Go' ~/.did/notes.txt
+}

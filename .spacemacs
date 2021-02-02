@@ -408,7 +408,10 @@ you should place your code here."
   ;;;;
 
   ;; disable ido-mode
-  (ido-mode -1))
+  (ido-mode -1)
+
+  ;; fix duplicates in search history
+  (setq history-delete-duplicates t))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

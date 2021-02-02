@@ -55,7 +55,6 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-
 ## User configuration
 
 # Setup NVM (homebrew installed)
@@ -85,8 +84,8 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
-# Setup rbenv
-eval "$(rbenv init -)"
+# # Setup rbenv
+# eval "$(rbenv init -)"
 
 # Signal homebrew
 export HOMEBREW_GITHUB_API_TOKEN="$(cat ~/dotfiles/secrets/HOMEBREW_GITHUB_API_TOKEN)"

@@ -39,7 +39,8 @@ values."
      sql
      html
      javascript
-     clojure
+     syntax-checking
+     (clojure :variables clojure-enable-linters '(clj-kondo joker))
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -369,6 +370,12 @@ you should place your code here."
                                     (match 'defun)
                                     ;; slingshot
                                     (try+ 0))))
+
+  ;(add-hook 'clojure-mode-hook #'flycheck-mode)
+  ;(use-package clojure-mode
+  ;  :ensure t
+  ;  :config
+  ;  (require 'flycheck-clj-kondo))
 
   ;;;;
   ;; Cider Setup

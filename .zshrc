@@ -17,7 +17,7 @@ ZSH_THEME="robbyrussell"
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="false"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
@@ -57,44 +57,38 @@ source $ZSH/oh-my-zsh.sh
 
 ## User configuration
 
-# Setup NVM (homebrew installed)
-export NVM_DIR="$HOME/.nvm"
-. "$(brew --prefix nvm)/nvm.sh"
-
-# Check for .nvmrc on entering a directory
-# (https://github.com/nvm-sh/nvm#calling-nvm-use-automatically-in-a-directory-with-a-nvmrc-file)
-autoload -U add-zsh-hook
-load-nvmrc() {
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
-
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm use
-    fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
-
-# # Setup rbenv
-# eval "$(rbenv init -)"
-
 # Signal homebrew
-export HOMEBREW_GITHUB_API_TOKEN="$(cat ~/dotfiles/secrets/HOMEBREW_GITHUB_API_TOKEN)"
+export HOMEBREW_GITHUB_API_TOKEN="$(cat ~/dotfiles/secrets/SIGNAL_TOKEN)"
+export GITHUB_USERNAME="josephowatkins"
+export GITHUB_TOKEN="$(cat ~/dotfiles/secrets/SIGNAL_TOKEN)"
+
+# Personal github package access token
+export GITHUB_PACKAGE_ACCESS_TOKEN="$(cat ~/dotfiles/secrets/GITHUB_PACKAGE_ACCESS_TOKEN)"
 
 # Setup pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+# export LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/bzip2/lib"
+# export CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/bzip2/include"
 
 # GO
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
 export GOROOT=/usr/local/opt/go/libexec
+
+# Set Java version
+export JAVA_HOME=`/usr/libexec/java_home -v 21`
+
+# Set add poetry to path
+export PATH="$HOME/.poetry/bin:$PATH"
+
+# add homebrew sbin
+export PATH="/usr/local/sbin:$PATH"
+
+# initialise nodenv
+eval "$(nodenv init -)"
+
+# add ghcup bin to path
+export PATH="$HOME/.ghcup/bin:$PATH"
